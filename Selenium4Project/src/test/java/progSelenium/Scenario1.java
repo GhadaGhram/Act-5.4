@@ -37,10 +37,35 @@ public class Scenario1 {
     driver.findElement(By.name("confirmPassword")).sendKeys("allo+123456789");
     driver.findElement(By.name("submit")).click();
    
-     /* List<WebElement> listOfElements = driver.findElements(By.name(ForAbstractMethod (int i )));
-   listOfElements.sendkeys("ghada","ghram","99737510","ghadaa.ghram@gmail.com");*/
     driver.close(); 
 
 	}
+	
+	//Comme on peut entrer les données à travers un tableau
+	package progSelenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Scenario1 {
+	
+	public static void main(String[] args) {
+	
+    System.setProperty("webdriver.chrome.driver","src/test/resources/drivers/chromedriver.exe");	
+    WebDriver driver= new ChromeDriver();
+	driver.manage().window().maximize();
+   
+    driver.navigate().to("http://demo.guru99.com/test/newtours/");
+    driver.findElement(By.linkText("REGISTER")).click();   
+
+    String[] byname= {"firstName","lastName", "phone", "userName","address1","city","state","postalCode","country","email","password","confirmPassword"};
+    String[] inputs= {"Ghada","Ghram", "99737510", "ghadaa.ghram@gmail.com","Charguia","Tunis","Tunisie","2040","TUNISIA","ghadaa.ghram@gmail.com","allo+123456789","allo+123456789"};
+    for( int i=0; i<byname.length; ++i ) {
+	   driver.findElement(By.name(byname[i])).sendKeys(inputs[i]);
+	} 
+    driver.findElement(By.name("submit")).click();
+   
+    driver.close(); 
 
 }
